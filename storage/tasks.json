@@ -1,0 +1,9 @@
+[
+  {"id": "phase0_scaffold", "title": "Phase 0 scaffold", "phase": "phase0", "completed": true},
+  {"id": "discovery_core", "title": "Discovery core", "phase": "phase1", "completed": true},
+  {"id": "discovery_persistence", "title": "Discovery persistence", "phase": "phase1", "completed": true},
+  {"id": "spec_generation", "title": "Spec generation", "phase": "phase2", "completed": true},
+  {"id": "spec_review_gate", "title": "Spec review gate", "phase": "phase3", "completed": true},
+  {"id": "workflow_controller", "title": "Workflow controller", "phase": "phase3", "completed": true},
+  {"id": "ui_approval_mode", "title": "UI approval mode", "phase": "phase3", "completed": false}
+]
