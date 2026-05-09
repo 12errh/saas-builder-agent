@@ -8,12 +8,29 @@ import json
 
 class RunState(str, Enum):
     PROJECT_INIT = "PROJECT_INIT"
+    DISCOVERY_ACTIVE = "DISCOVERY_ACTIVE"
+    DISCOVERY_RESOLVED = "DISCOVERY_RESOLVED"
+    SPEC_DRAFTING = "SPEC_DRAFTING"
+
+
+ALLOWED_TRANSITIONS: dict[RunState, tuple[RunState, ...]] = {
+    RunState.PROJECT_INIT: (RunState.DISCOVERY_ACTIVE,),
+    RunState.DISCOVERY_ACTIVE: (RunState.DISCOVERY_RESOLVED,),
+    RunState.DISCOVERY_RESOLVED: (RunState.SPEC_DRAFTING,),
+    RunState.SPEC_DRAFTING: (),
+}
 
 
 @dataclass
 class RunSession:
     run_id: str
     state: RunState
+
+    def transition_to(self, next_state: RunState) -> None:
+        allowed = ALLOWED_TRANSITIONS[self.state]
+        if next_state not in allowed:
+            raise ValueError(f"Invalid state transition: {self.state.value} -> {next_state.value}")
+        self.state = next_state
 
 
 class StateStore:
