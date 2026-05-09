@@ -5,6 +5,9 @@ from pathlib import Path
 import json
 
 
+PHASE_ORDER = ["phase0", "phase1", "phase2", "phase3", "phase4", "phase5", "phase6", "phase7"]
+
+
 @dataclass
 class TaskItem:
     id: str
@@ -37,3 +40,21 @@ class TaskTracker:
         if updated:
             self.save(tasks)
         return updated
+
+    def phase_completion(self) -> dict[str, bool]:
+        tasks = self.load()
+        by_phase: dict[str, list[TaskItem]] = {}
+        for task in tasks:
+            by_phase.setdefault(task.phase, []).append(task)
+        return {
+            phase: bool(items) and all(item.completed for item in items)
+            for phase, items in by_phase.items()
+        }
+
+    def can_start_phase(self, phase: str) -> bool:
+        if phase not in PHASE_ORDER:
+            raise ValueError(f"Unknown phase: {phase}")
+        completion = self.phase_completion()
+        phase_index = PHASE_ORDER.index(phase)
+        required_prior = PHASE_ORDER[:phase_index]
+        return all(completion.get(item, False) for item in required_prior)
