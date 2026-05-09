@@ -22,7 +22,11 @@ def test_workflow_through_spec_review(tmp_path: Path) -> None:
     passed = controller.run_spec_generation(session, profile)
     assert passed
 
+    build_passed = controller.run_build_phase("phase4", ["implement feature", "write tests"])
+    assert build_passed is True
+
     decisions = ApprovalStore(tmp_path / "approvals.json").load_all()
-    assert len(decisions) == 1
+    assert len(decisions) == 2
     assert decisions[0].stage == "SPEC_REVIEW_INTERNAL"
-    assert decisions[0].approved is True
+    assert decisions[1].stage == "BUILD_phase4"
+    assert decisions[1].approved is True
