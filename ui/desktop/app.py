@@ -3,10 +3,16 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+<<<<<<< codex/develop-coding-agent-for-app-creation-s7kay5
 from PySide6.QtWidgets import QApplication, QLabel, QMainWindow, QPushButton, QVBoxLayout, QWidget
 
 from core.orchestrator.state_machine import RunSession, RunState, StateStore
 from ui.desktop.phase_gate import can_enable_phase_button
+=======
+from PySide6.QtWidgets import QApplication, QLabel, QMainWindow, QVBoxLayout, QWidget
+
+from core.orchestrator.state_machine import RunSession, RunState, StateStore
+>>>>>>> main
 
 
 class MainWindow(QMainWindow):
@@ -19,6 +25,7 @@ class MainWindow(QMainWindow):
         layout = QVBoxLayout(container)
         layout.addWidget(QLabel("ForgeFlow desktop shell is running."))
         layout.addWidget(QLabel("State machine baseline initialized."))
+<<<<<<< codex/develop-coding-agent-for-app-creation-s7kay5
 
         phase3_enabled = can_enable_phase_button(Path("storage/tasks.json"), "phase3")
         phase3_button = QPushButton("Start Phase 3")
@@ -27,6 +34,8 @@ class MainWindow(QMainWindow):
 
         layout.addWidget(QLabel(f"Phase 3 gate status: {status}"))
         layout.addWidget(phase3_button)
+=======
+>>>>>>> main
         self.setCentralWidget(container)
 
 

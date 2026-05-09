@@ -251,4 +251,3 @@ A release candidate is complete only when:
 - No unresolved critical/high security findings.
 - Production checklist passes.
 - Handover bundle accepted by user.
-

@@ -1,4 +1,3 @@
-# ForgeFlow Agent Studio — Technical Requirements Document (TRD)
 
 ## 0) Document Control
 - **Version:** v2.0
@@ -289,4 +288,3 @@ Standard fields:
 - Local-only DB vs optional team Postgres mode.
 - Depth of plugin API for third-party agents.
 - Cloud sync architecture and encryption model.
-
